@@ -5,6 +5,7 @@ import api.farmacia.application.repository.MedicamentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicamentoService {
@@ -19,11 +20,19 @@ public class MedicamentoService {
         return medicamentoRepository.save(medicamento);
     }
 
-    public List<Medicamento> listarMedicamentoPorNome(String nomeMedicamento){
-        return medicamentoRepository.listarPorPrimeiroNome(nomeMedicamento);
+    public List<Medicamento> listarMedicamentoPorPrimeiroNome(String nomeMedicamento){
+        return medicamentoRepository.findByPrimeiroNome(nomeMedicamento);
     }
 
-    public List<Medicamento>listarPorUltimoNome(String nomeMedicamento){
-        return  medicamentoRepository.listarPorUltimoNome(nomeMedicamento);
+    public List<Medicamento>listarMedicamentoPorUltimoNome(String nomeMedicamento){
+        return  medicamentoRepository.findByPorUltimoNome(nomeMedicamento);
+    }
+
+    public Optional<Medicamento>procurarPorId(Long id){
+        return medicamentoRepository.findById(id);
+    }
+
+    public List<Medicamento>listarTodosMedicamentos(){
+        return medicamentoRepository.findAll();
     }
 }

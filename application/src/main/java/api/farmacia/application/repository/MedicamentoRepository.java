@@ -14,8 +14,8 @@ public interface MedicamentoRepository extends JpaRepository<Medicamento, Long> 
     @Override
     Optional<Medicamento> findById(Long id);
 
-    List<Medicamento>listarPorPrimeiroNome(String nomeMedicamento);
-    List<Medicamento> listarPorUltimoNome(String nomeMedicamento);
+    List<Medicamento>findByPrimeiroNome(String nomeMedicamento);
+    List<Medicamento> findByPorUltimoNome(String nomeMedicamento);
 
 
 
