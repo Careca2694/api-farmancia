@@ -1,5 +1,6 @@
 package api.farmacia.application.service;
 
+import api.farmacia.application.exception.NotFound;
 import api.farmacia.application.model.Medicamento;
 import api.farmacia.application.repository.MedicamentoRepository;
 import org.springframework.stereotype.Service;
@@ -17,19 +18,15 @@ public class MedicamentoService {
     }
 
     public Medicamento adicionarMedicamento(Medicamento medicamento){
-        return medicamentoRepository.save(medicamento);
+            return medicamentoRepository.save(medicamento);
     }
 
-    public List<Medicamento> listarMedicamentoPorPrimeiroNome(String nomeMedicamento){
-        return medicamentoRepository.findByPrimeiroNome(nomeMedicamento);
+    public List<Medicamento> listarMedicamentoPorNome(String nomeMedicamento){
+        return medicamentoRepository.findByNome(nomeMedicamento);
     }
 
-    public List<Medicamento>listarMedicamentoPorUltimoNome(String nomeMedicamento){
-        return  medicamentoRepository.findByPorUltimoNome(nomeMedicamento);
-    }
-
-    public Optional<Medicamento>procurarPorId(Long id){
-        return medicamentoRepository.findById(id);
+    public List<Medicamento>listarMedicamentoPorDescricao(String descricaoMedicamento){
+        return  medicamentoRepository.findByDescricao(descricaoMedicamento);
     }
 
     public List<Medicamento>listarTodosMedicamentos(){

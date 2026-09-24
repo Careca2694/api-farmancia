@@ -17,19 +17,19 @@ public class MedicamentoController {
         this.medicamentoService = medicamentoService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Medicamento>>listarMedicamentoPorPrimeiroNome(@RequestParam String nomeMedicamento){
-        List<Medicamento> listaMedicamentos = medicamentoService.listarMedicamentoPorPrimeiroNome(nomeMedicamento);
+    @GetMapping("/listarPorNome")
+    public ResponseEntity<List<Medicamento>>listarMedicamentoPorNome(@RequestParam String nome){
+        List<Medicamento> listaMedicamentos = medicamentoService.listarMedicamentoPorNome(nome);
         return ResponseEntity.ok().body(listaMedicamentos);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Medicamento>>listarMedicamentoPorUltimoNome(@RequestParam String nomeMedicamento){
-        List<Medicamento> listaMedicamentos = medicamentoService.listarMedicamentoPorUltimoNome(nomeMedicamento);
+    @GetMapping("/listarPorDescricao")
+    public ResponseEntity<List<Medicamento>>listarMedicamentoPorDescricao(@RequestParam String descricao){
+        List<Medicamento> listaMedicamentos = medicamentoService.listarMedicamentoPorDescricao(descricao);
         return ResponseEntity.ok().body(listaMedicamentos);
     }
 
-    @PostMapping
+    @PostMapping("/adicionar")
     public ResponseEntity<Medicamento> adicionarMedicamento(@RequestBody Medicamento medicamento){
         Medicamento medicamento1 = medicamentoService.adicionarMedicamento(medicamento);
         return ResponseEntity.ok().body(medicamento1);
