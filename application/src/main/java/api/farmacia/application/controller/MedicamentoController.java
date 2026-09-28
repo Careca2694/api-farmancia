@@ -35,4 +35,12 @@ public class MedicamentoController {
         return ResponseEntity.ok().body(medicamento1);
     }
 
+    @GetMapping("/listarTodos")
+    public ResponseEntity<List<Medicamento>> listarTodosMedicamentos(){
+
+        List<Medicamento> listar = medicamentoService.listarTodosMedicamentos();
+
+        return ResponseEntity.accepted().body(listar);
+    }
+
 }
