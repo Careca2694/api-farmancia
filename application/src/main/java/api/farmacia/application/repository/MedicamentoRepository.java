@@ -14,6 +14,8 @@ public interface MedicamentoRepository extends JpaRepository<Medicamento, Long> 
     List<Medicamento>findByNome(String nome);
     List<Medicamento> findByDescricao(String descricao);
 
+    void deleteByNome(String nome);
+
 
 
 }

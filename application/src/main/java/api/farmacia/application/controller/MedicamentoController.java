@@ -29,12 +29,6 @@ public class MedicamentoController {
         return ResponseEntity.ok().body(listaMedicamentos);
     }
 
-    @PostMapping("/adicionar")
-    public ResponseEntity<Medicamento> adicionarMedicamento(@RequestBody Medicamento medicamento){
-        Medicamento medicamento1 = medicamentoService.adicionarMedicamento(medicamento);
-        return ResponseEntity.ok().body(medicamento1);
-    }
-
     @GetMapping("/listarTodos")
     public ResponseEntity<List<Medicamento>> listarTodosMedicamentos(){
 
@@ -42,5 +36,25 @@ public class MedicamentoController {
 
         return ResponseEntity.accepted().body(listar);
     }
+
+    @PostMapping("/adicionar")
+    public ResponseEntity<Medicamento> adicionarMedicamento(@RequestBody Medicamento medicamento){
+        Medicamento medicamento1 = medicamentoService.adicionarMedicamento(medicamento);
+        return ResponseEntity.ok().body(medicamento1);
+    }
+
+    @DeleteMapping("/deletar")
+    public ResponseEntity<Void> deletarMedicamento(@RequestParam String nome){
+        medicamentoService.deleteMedicamento(nome);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/atualizar")
+    public ResponseEntity<Medicamento> atualizarMedicamento(@RequestBody Medicamento medicamento){
+        Medicamento medicamento1 = medicamentoService.atualizarMedicamento(medicamento);
+        return ResponseEntity.ok().body(medicamento1);
+    }
+
+
 
 }

@@ -11,7 +11,7 @@ public class Medicamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome_medicamento", length = 100, nullable = false)
+    @Column(name = "nome_medicamento", length = 100, nullable = false,unique = true)
     private String nome;
     @Column(name = "quantidade_medicamento",nullable = false)
     private Integer quantidade;
