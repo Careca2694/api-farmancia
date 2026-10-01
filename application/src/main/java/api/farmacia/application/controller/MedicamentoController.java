@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/medicamentos")
@@ -37,6 +38,12 @@ public class MedicamentoController {
         return ResponseEntity.accepted().body(listar);
     }
 
+    @GetMapping("/buscarPorId/{id}")
+    public ResponseEntity<Optional<Medicamento>> listarPorId(@PathVariable Long id){
+        Optional<Medicamento> listarMedicamento = medicamentoService.BuscarMedicamentoPorId(id);
+        return ResponseEntity.ok().body(listarMedicamento);
+    }
+
     @PostMapping("/adicionar")
     public ResponseEntity<Medicamento> adicionarMedicamento(@RequestBody Medicamento medicamento){
         Medicamento medicamento1 = medicamentoService.adicionarMedicamento(medicamento);
@@ -49,10 +56,9 @@ public class MedicamentoController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/atualizar")
-    public ResponseEntity<Medicamento> atualizarMedicamento(@RequestBody Medicamento medicamento){
-        Medicamento medicamento1 = medicamentoService.atualizarMedicamento(medicamento);
-        return ResponseEntity.ok().body(medicamento1);
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<Medicamento> atualizarMedicamento(@PathVariable Long id,@RequestBody Medicamento medicamento){
+        return ResponseEntity.ok().body(medicamentoService.atualizarMedicamento(id,medicamento));
     }
 
 

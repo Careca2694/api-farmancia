@@ -39,7 +39,20 @@ public class MedicamentoService {
         medicamentoRepository.deleteByNome(nome);
     }
 
-    public Medicamento atualizarMedicamento(Medicamento medicamento){
-       return  medicamentoRepository.save(medicamento);
+    public Optional<Medicamento> BuscarMedicamentoPorId(Long id){
+        return medicamentoRepository.findById(id);
+    }
+
+    public Medicamento atualizarMedicamento(Long id, Medicamento medicamento){
+        Medicamento medicamentoExistente = medicamentoRepository.findById(id).orElseThrow(() -> new NotFound("Medicamento nao encontrado"));
+
+        medicamentoExistente.setNome(medicamento.getNome());
+        medicamentoExistente.setQuantidade(medicamento.getQuantidade());
+        medicamentoExistente.setDescricao(medicamento.getDescricao());
+        medicamentoExistente.setPreco(medicamento.getPreco());
+        medicamentoExistente.setDataEntrada(medicamento.getDataEntrada());
+        medicamentoExistente.setDataValidade(medicamento.getDataValidade());
+
+        return medicamentoRepository.save(medicamentoExistente);
     }
 }
